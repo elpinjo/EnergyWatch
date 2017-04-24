@@ -1,7 +1,7 @@
 {
-  "name": "simple-server-node",
-  "version": "1.0.0",
-  "description": "A simple Expressjs Web server on resin.io",
+  "name": "EnergyWatch",
+  "version": "0.1.0",
+  "description": "The foundation for the energy monitor",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resin-io-projects/simple-server-node.git"
+    "url": "git+https://github.com/elpinjo/EnergyWatch.git"
   },
   "keywords": [
     "resin.io",
@@ -17,12 +17,12 @@
     "nodejs",
     "expressjs"
   ],
-  "author": "Shaun Mulligan <shaun@resin.io>",
-  "license": "ISC",
+  "author": "Misja Heuveling <misja@heuveling.net>",
+  "license": "GPL",
   "bugs": {
-    "url": "https://github.com/resin-io-projects/simple-server-node/issues"
+    "url": "https://github.com/elpinjo/EnergyWatch/issues"
   },
-  "homepage": "https://github.com/resin-io-projects/simple-server-node#readme",
+  "homepage": "https://github.com/elpinjo/EnergyWatch/#readme",
   "dependencies": {
     "express": "*"
   }
