@@ -6,7 +6,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-buildpack-deps:jessie-curl
 
 #Retrieve required products for installing and building WebIOPi
 RUN apt-get update && apt-get install -yq \
-   python build-essential && \
+   python build-essential python-rpi.gpio && \
    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #Get and build WebIOPi   
