@@ -4,7 +4,7 @@
 # Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-buildpack-deps:jessie-curl
 
-RUN cd /tmp && wget https://downloads.sourceforge.net/project/webiopi/WebIOPi-0.7.1.tar.gz?r=&ts=1493199663&use_mirror=freefr && tar -xzf WebIOPi-0.7.1.tar.gz  && rm WebIOPi-0.7.1.tar.gz && cd WebIOPi-0.7.1 && ./setup.sh && cd / && rm -rf /tmp/*
+RUN cd /tmp && wget 'https://downloads.sourceforge.net/project/webiopi/WebIOPi-0.7.1.tar.gz?r=&ts=1493199663&use_mirror=freefr' && tar -xzf WebIOPi-0.7.1.tar.gz  && rm WebIOPi-0.7.1.tar.gz && cd WebIOPi-0.7.1 && ./setup.sh && cd / && rm -rf /tmp/*
 
 #RUN wget -O - https://downloads.sourceforge.net/project/webiopi/WebIOPi-0.7.1.tar.gz?r=&ts=1493199663&use_mirror=freefr > /tmp/WebIOPi-0.7.1.tar.gz && cd /tmp && tar -xzf WebIOPi-0.7.1.tar.gz  && rm WebIOPi-0.7.1.tar.gz && cd WebIOPi-0.7.1 && ./setup.sh && cd / && rm -rf /tmp/*
 # Defines our working directory in container
