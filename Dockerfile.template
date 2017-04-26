@@ -4,12 +4,18 @@
 # Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-buildpack-deps:jessie-curl
 
+#Retrieve required products for installing and building WebIOPi
 RUN apt-get update && apt-get install -yq \
-   python && \
+   python build-essential && \
    apt-get clean && rm -rf /var/lib/apt/lists/*
-   
+
+#Get and build WebIOPi   
 RUN cd /tmp && wget -O - 'https://downloads.sourceforge.net/project/webiopi/WebIOPi-0.7.1.tar.gz?r=&ts=1493199663&use_mirror=freefr' > /tmp/WebIOPi-0.7.1.tar.gz && tar -xzf WebIOPi-0.7.1.tar.gz  && rm WebIOPi-0.7.1.tar.gz && cd WebIOPi-0.7.1 && ./setup.sh && cd / && rm -rf /tmp/*
 
+# Cleanup of build essentials after building the WebIOPi sources.
+RUN apt-get purge build-essential && \
+   apt-get clean && rm -rf /var/lib/apt/lists/*
+   
 #RUN wget -O - https://downloads.sourceforge.net/project/webiopi/WebIOPi-0.7.1.tar.gz?r=&ts=1493199663&use_mirror=freefr > /tmp/WebIOPi-0.7.1.tar.gz && cd /tmp && tar -xzf WebIOPi-0.7.1.tar.gz  && rm WebIOPi-0.7.1.tar.gz && cd WebIOPi-0.7.1 && ./setup.sh && cd / && rm -rf /tmp/*
 # Defines our working directory in container
 WORKDIR /usr/src/app
