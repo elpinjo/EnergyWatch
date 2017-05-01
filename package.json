@@ -25,5 +25,7 @@
   "homepage": "https://github.com/elpinjo/EnergyWatch/#readme",
   "dependencies": {
     "express": "*"
+	"mqtt":"2.6.2"
+	"pi-gpio":"*"
   }
 }
