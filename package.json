@@ -16,7 +16,7 @@
     "P1",
     "smartmeter",
     "mqtt",
-    "nodejs",
+    "nodejs"
   ],
   "author": "Misja Heuveling <misja@heuveling.net>",
   "license": "CC-BY-NC-4.0",

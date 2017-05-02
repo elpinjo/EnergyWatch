@@ -1,38 +1,38 @@
-var express = require('express');
-var app = express();
-var mqtt = require('mqtt')
-var serial = require('serialport')
-var mqtt_client  = mqtt.connect('mqtt://192.168.2.5')
+var serial = require('serialport');
+var mqtt = require('mqtt');
 
-var serial_port = new SerialPort("/dev/ttyUSB0", {
-  baudRate: 115200
+var mqtt_client = mqtt.connect('mqtt://192.168.2.5');
+
+var serial_port = new serial('/dev/ttyUSB0', {
+  baudRate: 115200,
+  parser: serial.parsers.readline("\n")
 });
 
-var Readline = SerialPort.parsers.Readline;
-var serialParser = new Readline();
+var telegram = '';
 
-serial_port.pipe(serialParser);
-serialParser.on('data', console.log);
+serial_port.on('open', showPortOpen);
+serial_port.on('data', publishData);
+serial_port.on('error', publishError);
+serial_port.on('disconnect', handleDisconnect);
 
-/*
-mqtt_client.on('connect', () => {
-  mqtt_client.publish('presence/smartmeter', 'Smart Energy meter')
-})
- 
-mqtt_client.on('message', (topic, message) => {
-  // message is Buffer 
-  console.log(message.toString());
-})
+function showPortOpen() {
+  console.log('port open. data rate: ' + serial_port.options.baudRate);
+}
 
-// reply to request with "Hello World!"
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-*/
-//start a server on port 80 and log its start to our console
-var server = app.listen(80, function () {
-	
-  var port = server.address().port;
-  console.log('Example app listening on port ', port);
+function publishData(data) {
+  if (!data.startsWith('!')) {
+        telegram += data + '\n';
+  } else {
+        telegram += data;
+        mqtt_client.publish('smartmeter/reading', telegram);
+        telegram = '';
+ }
+}
 
-});
+function publishError(error) {
+  console.log(error);
+}
+
+function handleDisconnect() {
+  console.log('Serial port disconnected');
+}
