@@ -13,9 +13,10 @@
   },
   "keywords": [
     "resin.io",
-    "webserver",
+    "P1",
+    "smartmeter",
+    "mqtt",
     "nodejs",
-    "expressjs"
   ],
   "author": "Misja Heuveling <misja@heuveling.net>",
   "license": "CC-BY-NC-4.0",
@@ -24,9 +25,7 @@
   },
   "homepage": "https://github.com/elpinjo/EnergyWatch/#readme",
   "dependencies": {
-    "express": "*",
-	"mqtt":"2.6.2",
-	"serialport":"4.0.7",
-	"pi-gpio":"*"
+    "mqtt":"2.6.2",
+    "serialport":"*"
   }
 }
