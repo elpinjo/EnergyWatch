@@ -4,6 +4,11 @@
 # Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-buildpack-deps:jessie-curl
 
+#Get python installed
+RUN apt-get update && apt-get install -yq \
+   python build-essential && \
+   apt-get clean && rm -rf /var/lib/apt/lists/*
+
 #Get latest Node-JS
 RUN cd /tmp && wget http://node-arm.herokuapp.com/node_latest_armhf.deb &&\
     dpkg -i node_latest_armhf.deb && rm node_latest_armhf.deb
