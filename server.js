@@ -24,7 +24,7 @@ function publishData(data) {
         telegram += data + '\n';
   } else {
         telegram += data;
-        mqtt_client.publish('smartmeter/reading', telegram);
+        mqtt_client.publish('smartmeter/reading', telegram, {qos:1});
         telegram = '';
  }
 }
