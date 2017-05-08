@@ -23,7 +23,7 @@ function publishData(data) {
   if (!data.startsWith('!')) {
         telegram += data + '\n';
   } else {
-        telegram += data;
+        telegram += data + '\n';
         mqtt_client.publish('smartmeter/reading', telegram, {qos:1});
         telegram = '';
  }
