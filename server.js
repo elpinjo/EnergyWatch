@@ -5,7 +5,7 @@ var mqtt_client = mqtt.connect('mqtt://192.168.2.5');
 
 var serial_port = new serial('/dev/ttyUSB0', {
   baudRate: 115200,
-  parser: serial.parsers.readline("\n")
+  parser: serial.parsers.Readline
 });
 
 var telegram = '';
