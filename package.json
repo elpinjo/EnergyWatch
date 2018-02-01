@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/elpinjo/EnergyWatch/#readme",
   "dependencies": {
-    "mqtt":"2.6.2",
-    "serialport":"*"
+    "mqtt": "^2.15.1",
+    "serialport": "^6.0.4"
   }
 }
