@@ -22,21 +22,13 @@ function showPortOpen() {
   console.log('port open.');
 }
 
-function publishData(dataBuffer) {
-  let data = '';
+function publishData(data) {
 
-  if (dataBuffer instanceof Buffer) {
-    data = dataBuffer.toString('ascii');
-  } else {
-    console.log('is dataBuffer a string?: ' + typeof dataBuffer );
-    console.log('dataBuffer is not a buffer: ' + dataBuffer);
-    data = dataBuffer;
-  }
   if (data.startsWith('/')) {
     telegram = '';
-    telegram += data;
+    telegram += data + '\n';
   } else if (!data.startsWith('!')) {
-        telegram += data;
+        telegram += data + '\n';
   } else {
         telegram += data + '\n';
         mqtt_client.publish('smartmeter/reading', telegram, {qos:1});
