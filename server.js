@@ -16,7 +16,7 @@ serial_port.on('error', publishError);
 serial_port.on('disconnect', handleDisconnect);
 
 function showPortOpen() {
-  console.log('port open. data rate: ' + serial_port.options.baudRate);
+  console.log('port open.');
 }
 
 function publishData(dataBuffer) {
