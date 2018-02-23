@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -yq \
    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #Get latest Node-JS
-RUN cd /tmp && wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-armv6l.tar.xz &&\
-    xz -d -c node-v8.9.4-linux-armv6l.tar.xz | tar xf - && mv node-v8.9.4-linux-armv6l/* /usr/local  && rm -rf node-v8.9.4-linux-armv6l
+RUN cd /tmp && wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-armv6l.tar.xz && xz -d -c node-v8.9.4-linux-armv6l.tar.xz | tar xf - && cp -r node-v8.9.4-linux-armv6l/* /usr/local  && rm -rf node-v8.9.4-linux-armv6l
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
