@@ -31,9 +31,9 @@ function publishData(dataBuffer) {
   }
   if (data.startsWith('/')) {
     telegram = '';
-    telegram += data + '\n';
+    telegram += data;
   } else if (!data.startsWith('!')) {
-        telegram += data + '\n';
+        telegram += data;
   } else {
         telegram += data + '\n';
         mqtt_client.publish('smartmeter/reading', telegram, {qos:1});
