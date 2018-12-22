@@ -33,6 +33,7 @@ function publishError(error) {
   console.log(error);
 }
 
+// just print an error
 function handleDisconnect() {
   console.log('Serial port disconnected');
 }
