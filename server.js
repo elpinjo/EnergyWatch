@@ -1,31 +1,37 @@
-var serial = require('serialport');
-var mqtt = require('mqtt');
+const serial = require('serialport');
+const mqtt = require('mqtt');
+const Readline = serial.parsers.Readline;
 
 var mqtt_client = mqtt.connect('mqtt://192.168.2.5');
 
 var serial_port = new serial('/dev/ttyUSB0', {
-  baudRate: 115200,
-  parser: serial.parsers.Readline
+  baudRate: 115200
 });
+
+const parser = new Readline();
+serial_port.pipe(parser);
 
 var telegram = '';
 
 serial_port.on('open', showPortOpen);
-serial_port.on('data', publishData);
+parser.on('data', publishData);
 serial_port.on('error', publishError);
 serial_port.on('disconnect', handleDisconnect);
 
 function showPortOpen() {
-  console.log('port open. data rate: ' + serial_port.options.baudRate);
+  console.log('port open.');
 }
 
 function publishData(data) {
-  if (!data.startsWith('!')) {
+
+  if (data.startsWith('/')) {
+    telegram = '';
+    telegram += data + '\n';
+  } else if (!data.startsWith('!')) {
         telegram += data + '\n';
   } else {
         telegram += data + '\n';
         mqtt_client.publish('smartmeter/reading', telegram, {qos:1});
-        telegram = '';
  }
 }
 
